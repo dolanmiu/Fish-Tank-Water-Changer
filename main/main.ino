@@ -5,6 +5,7 @@ int M2 = 13;
 
 long durationInSeconds = 300;
 long durationInMilliseconds = durationInSeconds * 1000;
+long dayInMilliseconds = 86400 * 1000;
 
 void setup()
 {
@@ -36,10 +37,12 @@ void loop()
 
   delay(durationInMilliseconds);
 
+  Serial.println("Stopping motor...");
   analogWrite(E1, 0);
   analogWrite(E2, 0);
 
-  // Wait one day
-  delay(86400 * 1000);
+  Serial.print("Wait for one day (ms): ");
+  Serial.println(dayInMilliseconds);
+  delay(dayInMilliseconds);
   
 }
