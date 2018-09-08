@@ -3,29 +3,38 @@ int M1 = 12;
 int E2 = 11;
 int M2 = 13;
 
-int durationInSeconds = 300;
+long durationInSeconds = 300;
+long durationInMilliseconds = durationInSeconds * 1000;
 
 void setup()
 {
+  Serial.begin(9600);
+  Serial.println("Starting...");
+  
   pinMode(M1, OUTPUT);
   pinMode(M2, OUTPUT);
 }
 
 void loop()
 {
+  Serial.println("Running motor forwards...");
   digitalWrite(M1, HIGH);
   digitalWrite(M2, HIGH);
   analogWrite(E1, 255);
   analogWrite(E2, 255);
 
-  delay(durationInSeconds * 1000);
+  Serial.print("Delaying for (ms): ");
+  Serial.println(durationInMilliseconds);
 
+  delay(durationInMilliseconds);
+
+  Serial.println("Running motor backwards...");
   digitalWrite(M1, LOW);
   digitalWrite(M2, LOW);
   analogWrite(E1, 255);
   analogWrite(E2, 255);
 
-  delay(durationInSeconds * 1000);
+  delay(durationInMilliseconds);
 
   analogWrite(E1, 0);
   analogWrite(E2, 0);
