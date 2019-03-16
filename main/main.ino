@@ -3,7 +3,7 @@ int M1 = 12;
 int E2 = 11;
 int M2 = 13;
 
-long durationInSeconds = 300;
+long durationInSeconds = 600;
 
 long durationInMilliseconds = durationInSeconds * 1000;
 long dayInMilliseconds = 86400 * 1000;
