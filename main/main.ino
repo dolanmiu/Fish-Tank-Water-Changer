@@ -1,3 +1,6 @@
+// Non solenoid automatic Arduino UNO water changer
+// Uses check-valve
+// L298P Motor driver
 int E1 = 10;
 int M1 = 12;
 int E2 = 11;
