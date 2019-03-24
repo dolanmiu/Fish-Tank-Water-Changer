@@ -4,8 +4,12 @@
 #include <AFMotor.h>
 
 AF_DCMotor motor(4);
-AF_DCMotor inSolenoid(2); // In solenoid
-AF_DCMotor outSolenoid(3); // Out solenoid
+AF_DCMotor inSolenoid(3); // In solenoid
+AF_DCMotor outSolenoid(2); // Out solenoid
+
+long STEP_TIME = 1000L * 60 * 5;
+long DAY_TIME = 1000L * 60 * 60 * 24;
+long DAY_TIME_WITH_OFFSET = DAY_TIME - (STEP_TIME * 2);
 
 void setup() 
 {
@@ -18,26 +22,24 @@ void setup()
 }
 
 void loop() 
-{
-  uint8_t i;
-
-  // Turn on motor
-  motor.run(FORWARD);
-  
+{  
   inSolenoid.run(FORWARD);
-  delay(1000);
-
-  inSolenoid.run(RELEASE);
-  outSolenoid.run(FORWARD);
-  // Now change motor direction
+  // Turn on motor
   motor.run(BACKWARD);
   
-  // Accelerate from zero to maximum speed
-  delay(1000);
+  delay(STEP_TIME);
+
+  inSolenoid.run(RELEASE);
+  
+  outSolenoid.run(FORWARD);
+  // Now change motor direction
+  motor.run(FORWARD);
+  
+  delay(STEP_TIME);
 
   // Now turn off motor
   motor.run(RELEASE);
   outSolenoid.run(RELEASE);
 
-  delay(1000);
+  delay(DAY_TIME_WITH_OFFSET);
 }
